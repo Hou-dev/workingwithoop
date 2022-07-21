@@ -11,7 +11,7 @@ class BouncyBall:
     @price.setter
     def price(self, new_price):
         if new_price > 0 and isinstance(new_price, int):
-        self._price = new_price
+            self._price = new_price
     @property
     def size(self):
         return self._size
@@ -26,3 +26,4 @@ class BouncyBall:
     def size(self,new_brand):
         if isinstance(new_brand,str):
             self._size = new_brand
+            

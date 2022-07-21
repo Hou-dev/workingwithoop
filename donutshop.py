@@ -1,6 +1,6 @@
 
 class Donut:
-    def __init__(flavor, toppings, filling, size):
+    def __init__(self,flavor, toppings, filling, size):
         self.flavor = flavor
         self.toppings = toppings
         self.filling = filling
