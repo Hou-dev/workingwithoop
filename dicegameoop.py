@@ -1,4 +1,3 @@
-#WIP
 import random
 
 
@@ -20,7 +19,7 @@ class Player:
     def __init__(self,die,is_computer=False):
         self._die = die
         self._is_computer = is_computer
-        self._counter = 10
+        self._counter = 5
 
     @property
     def die(self):
@@ -50,11 +49,14 @@ class DiceGame:
         self.computer = computer
         
     def play(self):
-        print("++++++++++++++++++++")
+        print("\n++++++++++++++++++++")
         print("Welcome to Die Game")
         print("++++++++++++++++++++")
         while True:
             self.play_round()
+            gameover = self.check_if_over()
+            if gameover == True:
+                break
     
     def play_round(self):
         self.print_welcome_round()
@@ -79,7 +81,7 @@ class DiceGame:
         self.display_counter()
  
     def print_welcome_round(self):
-        print("++++++New Round++++++++")
+        print("\n++++++New Round++++++++")
         input("Press any key to roll")
     
     def show_die(self, player_value, computer_value):
@@ -88,12 +90,27 @@ class DiceGame:
         
     def winner_upate(self, winner, loser):
         winner.decrement_counter()
-        loser.increment.counter()
+        loser.increment_counter()
         
     def display_counter(self):
         print(f"Player counter: {self.player.counter}")
         print(f"Computer counter: {self.computer.counter}")
         
+    def check_if_over(self):
+        if self.player.counter == 0:
+            self.show_if_over(self.player)
+            return True
+        elif self.computer.counter == 0:
+            self.show_if_over(self.computer)
+            return True
+        else:
+            return False
+        
+    def show_if_over(self, winner):
+        if winner.is_computer:
+            print("Computer Wins!")
+        else:
+            print("Player Won!")
         
 player_die = Die()
 computer_die = Die() 
@@ -101,6 +118,6 @@ computer_die = Die()
 my_player = Player(player_die, False)
 computer_player = Player(computer_die, True)
 
-game = DiceGame(my_player, computer_die)
+game = DiceGame(my_player, computer_player)
 
 game.play()
